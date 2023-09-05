@@ -1,0 +1,12 @@
+<%= render @unit %>
+
+<div>
+  <%= link_to "Редагувати", edit_unit_path(@unit) %> |
+  <%= link_to "Видалити структурну одиницю", @unit,
+              data: {
+                turbo_method: :delete,
+                turbo_confirm: "Справді видалити цю структурну одиницю - #{@unit.name} ?"
+              }
+  %> |
+  <%= link_to "Назад до переліку структурних одиниць", units_path %>
+</div>

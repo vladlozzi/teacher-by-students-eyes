@@ -1,0 +1,42 @@
+<%= form_with(model: person) do |form| %>
+  <% if person.errors.any? %>
+    <div style="color: red">
+      <h2>Помилки, які перешкоджають збереженню даних:</h2>
+
+      <ul>
+        <% person.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label "Прізвище, ім'я та по батькові (за наявності)", style: "display: block" %>
+    <%= form.text_field :full_name, size: 50 %>
+  </div>
+
+  <div>
+    <%= form.label "Корпоративний email", style: "display: block" %>
+    <%= form.text_field :email, size: 50 %>
+  </div>
+
+  <div>
+    <%= form.label "ORCID:", style: "display: block" %>
+    <%= form.text_field :orcid, size: 20 %>
+  </div>
+
+  <div>
+    <%= form.label "Scopus AuthorID:", style: "display: block" %>
+    <%= form.text_field :scopus_authorid, size: 20 %>
+  </div>
+
+  <div>
+    <%= form.label "Web of Science ResearcherID:", style: "display: block" %>
+    <%= form.text_field :wos_researcherid, size: 20 %>
+  </div>
+
+  <div>
+    <%= form.submit "Зберегти" %>
+  </div>
+<% end %>

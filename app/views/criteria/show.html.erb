@@ -1,0 +1,12 @@
+<%= render @criterium %>
+
+<div>
+  <%= link_to "Редагувати дані про цей критерій", edit_criterium_path(@criterium) %> |
+  <%= link_to "Видалити ", @criterium,
+              data: {
+                turbo_method: :delete,
+                turbo_confirm: "Справді видалити критерій \"#{@criterium.name}\"?"
+              }
+  %> |
+  <%= link_to "Назад до переліку критеріїв", criteria_path %>
+</div>

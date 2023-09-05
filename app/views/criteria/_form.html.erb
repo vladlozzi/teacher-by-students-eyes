@@ -1,0 +1,27 @@
+<%= form_with(model: criterium) do |form| %>
+  <% if criterium.errors.any? %>
+    <div style="color: red">
+      <h2>Виявлено помилки, які перешкоджають збереженню даних:</h2>
+
+      <ul>
+        <% criterium.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label "Назва критерію", style: "display: block" %>
+    <%= form.text_field :name, size: 100 %>
+  </div>
+
+  <div>
+    <%= form.label "Шкала оцінювання", style: "display: block" %>
+    <%= form.text_field :scale, size: 100 %>
+  </div>
+
+  <div>
+    <%= form.submit "Зберегти" %>
+  </div>
+<% end %>

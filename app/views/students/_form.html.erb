@@ -1,0 +1,27 @@
+<%= form_with(model: student) do |form| %>
+  <% if student.errors.any? %>
+    <div style="color: red">
+      <h2>Виявлено помилки, які перешкоджають збереженню даних:</h2>
+
+      <ul>
+        <% student.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label "Прізвище, ім'я та по батькові (за наявності)", style: "display: block" %>
+    <%= form.text_field :full_name, size: 50 %>
+  </div>
+
+  <div>
+    <%= form.label "Код персони в ЄДЕБО", style: "display: block" %>
+    <%= form.text_field :edebo_person_code %>
+  </div>
+
+  <div>
+    <%= form.submit "Зберегти" %>
+  </div>
+<% end %>

@@ -1,0 +1,21 @@
+<%= form_with(model: group) do |form| %>
+  <% if group.errors.any? %>
+    <div style="color: red">
+      <h2>Помилки, які перешкоджають збереженню даних:</h2>
+      <ul>
+        <% group.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label "Шифр академгрупи", style: "display: block" %>
+    <%= form.text_field :group %>
+  </div>
+
+  <div>
+    <%= form.submit "Зберегти" %>
+  </div>
+<% end %>

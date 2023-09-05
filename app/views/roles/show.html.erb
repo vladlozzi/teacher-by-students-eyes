@@ -1,0 +1,12 @@
+<%= render @role %>
+
+<div>
+  <%= link_to "Редагувати", edit_role_path(@role) %> |
+  <%= link_to "Видалити роль користувача", @role,
+              data: {
+                turbo_method: :delete,
+                turbo_confirm: "Справді видалити цю роль користувача - #{@role.role} ?"
+              }
+  %> |
+  <%= link_to "Назад до переліку ролей", roles_path %>
+</div>

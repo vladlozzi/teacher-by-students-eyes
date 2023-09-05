@@ -1,0 +1,12 @@
+<%= render @group %>
+
+<div>
+  <%= link_to "Редагувати", edit_group_path(@group) %> |
+  <%= link_to "Видалити академгрупу", @group,
+              data: {
+                turbo_method: :delete,
+                turbo_confirm: "Справді видалити цю академгрупу - #{@group.group} ?"
+              }
+  %> |
+  <%= link_to "Назад до переліку академгруп", groups_path %>
+</div>

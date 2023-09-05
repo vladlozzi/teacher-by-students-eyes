@@ -1,0 +1,26 @@
+<h1>Персонал</h1>
+
+<div id="people">
+  <table>
+    <tr>
+      <th>№</th><th>Прізвище, ім'я та по батькові (за наявності)</th><th>Корпоративний email</th><th></th>
+    </tr>
+  <% index = 0 %>
+  <% @people.each do |person| %>
+      <% index += 1 %>
+      <tr>
+        <td class="align-right"><%= index %></td>
+        <td><%= person.full_name %></td>
+        <td><%= person.email %></td>
+        <td><%= link_to "Подробиці", person %></td>
+      </tr>
+  <% end %>
+  </table>
+</div>
+
+<p>
+  <%= link_to "Додати особу", new_person_path %> |
+  <%= link_to 'Імпорт із текстового файлу', new_import_people_path %>
+</p>
+
+

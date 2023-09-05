@@ -1,0 +1,13 @@
+<%= render @student %>
+
+<div>
+  <%= link_to "Редагувати дані про студента/студентку", edit_student_path(@student) %> |
+  <%= link_to "Видалити студента/студентку", @student,
+              data: {
+                turbo_method: :delete,
+                turbo_confirm: "Справді видалити #{@student.full_name}, #{@student.edebo_person_code}?"
+              }
+  %> |
+  <%= link_to "Назад до переліку студентів/студенток", students_path %>
+
+</div>

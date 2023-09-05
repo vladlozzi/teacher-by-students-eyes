@@ -1,0 +1,13 @@
+<%= render @person %>
+
+<div>
+  <%= link_to "Редагувати особу", edit_person_path(@person) %> |
+  <%= link_to "Видалити особу", @person,
+              data: {
+                turbo_method: :delete,
+                turbo_confirm: "Справді видалити цю особу - #{@person.full_name} ?"
+              }
+  %> |
+  <%= link_to "Назад до персоналу", people_path %>
+
+</div>

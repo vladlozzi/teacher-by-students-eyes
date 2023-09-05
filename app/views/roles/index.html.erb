@@ -1,0 +1,22 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Ролі користувачів</h1>
+
+<div id="roles">
+  <table>
+    <tr>
+      <th>№</th><th>Назва ролі</th><th></th>
+    </tr>
+    <% index = 0 %>
+    <% @roles.each do |role| %>
+      <% index += 1 %>
+      <tr>
+        <td class="align-right"><%= index %></td>
+        <td><%= role.role %></td>
+        <td><%= link_to "Подробиці", role %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<%= link_to "Додати роль користувача", new_role_path %>

@@ -1,0 +1,21 @@
+<h1>Структурні одиниці</h1>
+<p><%= link_to "Додати структурну одиницю", new_unit_path %></p>
+
+<div id="units">
+  <table>
+    <tr>
+      <th>№</th><th>Вид</th><th>Назва структурної одиниці</th><th></th>
+    </tr>
+    <% index = 0 %>
+    <% @units.each do |unit| %>
+      <% index += 1 %>
+      <tr>
+        <td class="align-right"><%= index %></td>
+        <td><%= unit.unit_type %></td>
+        <td><%= unit.name %></td>
+        <td><%= link_to "Подробиці", unit %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
