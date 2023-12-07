@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_25_072245) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_11_120240) do
   create_table "criteria", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "scale", null: false
@@ -45,6 +45,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_25_072245) do
     t.index ["role"], name: "index_roles_on_role", unique: true
   end
 
+  create_table "student_distributions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "student_id", null: false
+    t.bigint "group_id", null: false
+    t.integer "edebo_study_code"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["edebo_study_code"], name: "index_student_distributions_on_edebo_study_code", unique: true
+    t.index ["email"], name: "index_student_distributions_on_email", unique: true
+    t.index ["group_id"], name: "index_student_distributions_on_group_id"
+    t.index ["student_id"], name: "index_student_distributions_on_student_id"
+  end
+
   create_table "students", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "full_name", null: false
     t.string "edebo_person_code", null: false
@@ -61,4 +74,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_25_072245) do
     t.index ["name"], name: "index_units_on_name", unique: true
   end
 
+  add_foreign_key "student_distributions", "groups"
+  add_foreign_key "student_distributions", "students"
 end

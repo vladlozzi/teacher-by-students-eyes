@@ -17,10 +17,10 @@ RSpec.describe "/groups", type: :request do
   # This should return the minimal set of attributes required to create a valid
   # Group. As you add validations to Group, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) { {group: "Group1"} }
-  let(:more_valid_attributes) { {group: "Group2"} }
+  let(:valid_attributes) { {group: "GroupValid1"} }
+  let(:more_valid_attributes) { {group: "GroupValid2"} }
   let(:invalid_attributes) { {group: ""} }
-  let(:same_attributes) { {group: "Group1"} }
+  let(:same_attributes) { {group: "GroupValid1"} }
 
   describe "GET /index" do
     it "renders a successful response" do

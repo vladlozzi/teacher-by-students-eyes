@@ -1,0 +1,25 @@
+<h1>Розподіл студентів/студенток за академгрупами</h1>
+
+<div id="student_distributions">
+  <table>
+    <tr>
+      <th>№</th><th>Прізвище, ім'я та по батькові (за наявності)</th><th>Шифр академгрупи</th>
+      <th>Корпоративний email</th><th></th>
+    </tr>
+    <% index = 0 %>
+    <% @student_distributions.each do |student_distribution| %>
+      <% index += 1 %>
+      <tr>
+        <td class="align-right"><%= index %></td>
+        <td><%= student_distribution.student.full_name %></td>
+        <td><%= student_distribution.group.group %></td>
+        <td><%= student_distribution.email %></td>
+        <td><%= link_to "Подробиці", student_distribution %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+<p>
+  <%= link_to "Нова позиція розподілу", new_student_distribution_path %> |
+  <%= link_to "Імпорт з текстового файлу", new_import_student_distributions_path %>
+</p>

@@ -1,0 +1,13 @@
+<h1>Editing student distribution</h1>
+
+<%= render "form", student_distribution: @student_distribution,
+           students_for_select: @students_for_select,
+           groups_for_select: @groups_for_select
+%>
+
+<br>
+
+<div>
+  <%= link_to "Показати цю позицію розподілу", @student_distribution %> |
+  <%= link_to "Назад до розподілу за академгрупами", student_distributions_path %>
+</div>

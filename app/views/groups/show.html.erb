@@ -1,5 +1,26 @@
 <%= render @group %>
+<p>Студенти, які навчаються в групі:</p>
+<div id="students-of-group">
+  <table>
+    <tr>
+      <th>№</th><th>Прізвище, ім'я та по батькові (за наявності)</th><th>Код навчання в ЄДЕБО</th><th>Корпоративний email</th>
+    </tr>
+    <% if @students.present? %>
+      <% index = 0 %>
+      <% @students.each do |student| %>
+        <% index += 1 %>
+        <tr>
+          <td class="align-right"><%= index %></td>
+          <td><%= student.student.full_name %></td>
+          <td><%= student.edebo_study_code %></td>
+          <td><%= student.email %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+</div>
 
+<br>
 <div>
   <%= link_to "Редагувати", edit_group_path(@group) %> |
   <%= link_to "Видалити академгрупу", @group,

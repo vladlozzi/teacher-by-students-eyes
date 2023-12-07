@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "groups/edit", type: :view do
-  let(:group) { Group.create!(group: "Group") }
+  let(:group) { Group.create!(group: "Group_for_edit") }
 
   before(:each) do
     assign(:group, group)
