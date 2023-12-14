@@ -6,6 +6,7 @@ class Person < ApplicationRecord
   validates_format_of :email,
                       with: URI::MailTo::EMAIL_REGEXP,
                       message: "Некоректний email"
+  has_many :teacher_distributions
 
   def self.truncate
     ActiveRecord::Base.connection.execute("TRUNCATE #{self.table_name}")

@@ -7,8 +7,7 @@ class PeopleController < ApplicationController
   end
 
   # GET /people/1 or /people/1.json
-  def show
-  end
+  def show; end
 
   # GET /people/new
   def new
@@ -16,8 +15,7 @@ class PeopleController < ApplicationController
   end
 
   # GET /people/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /people or /people.json
   def create
@@ -68,7 +66,11 @@ class PeopleController < ApplicationController
       File.foreach(params[:txt_file].path).with_index(1) do |line, index|
         full_name, email, orcid, scopus_authorid, wos_researcherid =
           line.delete("\r").delete("\n").split(";")
-        full_name = "" if full_name.nil?
+        full_name = "" if full_name.nil?    def set_options_for_select
+      @students_for_select = Student.pluck(:full_name, :id)
+      @groups_for_select = Group.pluck(:group, :id)
+    end
+
         email = "" if email.nil?
         orcid = "" if orcid.nil?
         scopus_authorid = ""  if scopus_authorid.nil?

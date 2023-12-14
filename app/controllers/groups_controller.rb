@@ -8,7 +8,7 @@ class GroupsController < ApplicationController
 
   # GET /groups/1 or /groups/1.json
   def show
-    @students = StudentDistribution.where(group: @group)
+    @students = StudentDistribution.where(group: @group).includes(:student).order("students.full_name")
   end
 
   # GET /groups/new

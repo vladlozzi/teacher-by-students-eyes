@@ -1,0 +1,25 @@
+<%= form_with(model: teacher_distribution) do |form| %>
+  <% if teacher_distribution.errors.any? %>
+    <div style="color: red">
+      <h2>Помилки, які перешкоджають збереженню даних:</h2>
+      <ul>
+        <% teacher_distribution.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div>
+    <%= form.label "Особа:" %>
+    <%= form.select :person_id, persons_for_select, required: true %>
+  </div>
+
+  <div>
+    <%= form.label "Кафедра:" %>
+    <%= form.select :unit_id, units_for_select, required: true %>
+  </div>
+
+  <div>
+    <%= form.submit "Зберегти" %>
+  </div>
+<% end %>

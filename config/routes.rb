@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root to: 'home#index'
 
+  resources :teacher_distributions
   resources :student_distributions
   resources :criteria
   resources :roles
@@ -18,6 +19,8 @@ Rails.application.routes.draw do
   post 'new_import_criteria' => 'criteria#import'
   get 'new_import_student_distributions' => 'student_distributions#new_import'
   post 'new_import_student_distributions' => 'student_distributions#import'
+  get 'new_import_teacher_distributions' => 'teacher_distributions#new_import'
+  post 'new_import_teacher_distributions' => 'teacher_distributions#import'
 
   get 'home/index'
   get '/auth/:provider/callback', to: 'sessions#omniauth'

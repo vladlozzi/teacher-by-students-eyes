@@ -8,6 +8,7 @@ class UnitsController < ApplicationController
 
   # GET /units/1 or /units/1.json
   def show
+    @people = TeacherDistribution.where(unit: @unit).includes(:person).order("people.full_name")
   end
 
   # GET /units/new

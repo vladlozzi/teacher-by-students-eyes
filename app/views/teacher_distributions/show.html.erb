@@ -1,0 +1,12 @@
+<%= render @teacher_distribution %>
+
+<div>
+  <%= link_to "Редагувати цю позицію розподілу", edit_teacher_distribution_path(@teacher_distribution) %> |
+  <%= link_to "Видалити цю позицію розподілу", @teacher_distribution,
+              data: {
+                turbo_method: :delete,
+                turbo_confirm: "Справді видалити цю позицію?"
+              }
+  %> |
+  <%= link_to "Назад до розподілу за кафедрами", teacher_distributions_path %>
+</div>

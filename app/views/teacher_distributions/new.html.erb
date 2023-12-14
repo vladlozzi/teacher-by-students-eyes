@@ -1,0 +1,13 @@
+<h1>Нове призначення викладача/викладачки на кафедру</h1>
+
+<%=
+  render "form", teacher_distribution: @teacher_distribution,
+         persons_for_select: @persons_for_select,
+         units_for_select: @units_for_select
+%>
+
+<br>
+
+<div>
+  <%= link_to "Назад до розподілу за кафедрами", teacher_distributions_path %>
+</div>

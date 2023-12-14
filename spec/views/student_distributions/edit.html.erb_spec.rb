@@ -13,18 +13,19 @@ RSpec.describe "student_distributions/edit", type: :view do
         edebo_study_code: "15000000",
         email: "email@email.com"
       )
-
     render
 
     assert_select "form[action=?][method=?]", student_distribution_path(@student_distribution), "post" do
-
       assert_select "select[name=?]", "student_distribution[student_id]"
-
       assert_select "select[name=?]", "student_distribution[group_id]"
-
       assert_select "input[name=?]", "student_distribution[edebo_study_code]"
-
       assert_select "input[name=?]", "student_distribution[email]"
+    end
+    assert_select "select#student_distribution_group_id" do
+      assert_select "option[value=?]", @groups_for_select.first.to_s
+    end
+    assert_select "select#student_distribution_student_id" do
+      assert_select "option[value=?]", @students_for_select.first.to_s
     end
   end
 end

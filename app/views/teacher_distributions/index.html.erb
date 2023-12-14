@@ -1,0 +1,23 @@
+<h1>Розподіл викладачів/викладачок за кафедрами</h1>
+<p>
+  <%= link_to "Нова позиція розподілу", new_teacher_distribution_path %> |
+  <%= link_to "Імпорт з текстового файлу", new_import_teacher_distributions_path %>
+</p>
+
+<div id="teacher_distributions">
+  <table>
+    <tr>
+      <th>№</th><th>Назва кафедри</th><th>Прізвище, ім'я та по батькові (за наявності)</th><th></th>
+    </tr>
+    <% index = 0 %>
+    <% @teacher_distributions.each do |teacher_distribution| %>
+      <% index += 1 %>
+      <tr>
+        <td class="align-right"><%= index %></td>
+        <td><%= teacher_distribution.unit.name %></td>
+        <td><%= teacher_distribution.person.full_name %></td>
+        <td><%= link_to "Подробиці", teacher_distribution %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>

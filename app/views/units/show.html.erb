@@ -1,5 +1,26 @@
 <%= render @unit %>
 
+<p>Особовий склад:</p>
+<div id="teachers-in-unit">
+  <table>
+    <tr>
+      <th>№</th><th>Прізвище, ім'я та по батькові (за наявності)</th><th>Корпоративний email</th>
+    </tr>
+    <% if @people.present? %>
+      <% index = 0 %>
+      <% @people.each do |person| %>
+        <% index += 1 %>
+        <tr>
+          <td class="align-right"><%= index %></td>
+          <td><%= person.person.full_name %></td>
+          <td><%= person.person.email %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+</div>
+
+<br>
 <div>
   <%= link_to "Редагувати", edit_unit_path(@unit) %> |
   <%= link_to "Видалити структурну одиницю", @unit,
