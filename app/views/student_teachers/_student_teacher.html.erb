@@ -1,0 +1,20 @@
+<div id="<%= dom_id student_teacher %>">
+  <p>
+    <strong>Студент/студентка:</strong>
+    <%= student_teacher.student_distribution.student.full_name %>
+  </p>
+  <p>
+    <strong>Академгрупа:</strong>
+    <%= student_teacher.student_distribution.group.group %>
+  </p>
+
+  <p>
+    <strong>Викладач/викладачка:</strong>
+    <%= student_teacher.teacher_distribution.person.full_name %>
+  </p>
+
+  <p>
+    <strong>Кафедра:</strong>
+    <%= student_teacher.teacher_distribution.unit.name %>
+  </p>
+</div>

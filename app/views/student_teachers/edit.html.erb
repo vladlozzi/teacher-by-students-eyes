@@ -1,0 +1,13 @@
+<h1>Редагування пари "студент-викладач"</h1>
+
+<%= render "form", student_teacher: @student_teacher,
+           student_distributions_for_select: @student_distributions_for_select,
+           teacher_distributions_for_select: @teacher_distributions_for_select
+%>
+
+<br>
+
+<div>
+  <%= link_to "Показати цю пару", @student_teacher %> |
+  <%= link_to "Назад до переліку пар", student_teachers_path %>
+</div>

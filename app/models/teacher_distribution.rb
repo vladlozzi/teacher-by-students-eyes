@@ -1,4 +1,5 @@
 class TeacherDistribution < ApplicationRecord
+  has_many :student_teachers
   belongs_to :person
   belongs_to :unit
 
@@ -10,6 +11,8 @@ class TeacherDistribution < ApplicationRecord
   }
 
   def self.truncate
+    ActiveRecord::Base.connection.execute("SET foreign_key_checks = 0")
     ActiveRecord::Base.connection.execute("TRUNCATE #{self.table_name}")
+    ActiveRecord::Base.connection.execute("SET foreign_key_checks = 1")
   end
 end

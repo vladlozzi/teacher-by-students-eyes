@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_09_190829) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_19_091808) do
   create_table "criteria", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.string "scale", null: false
@@ -58,6 +58,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_09_190829) do
     t.index ["student_id"], name: "index_student_distributions_on_student_id"
   end
 
+  create_table "student_teachers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "student_distribution_id", null: false
+    t.bigint "teacher_distribution_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_distribution_id"], name: "index_student_teachers_on_student_distribution_id"
+    t.index ["teacher_distribution_id"], name: "index_student_teachers_on_teacher_distribution_id"
+  end
+
   create_table "students", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "full_name", null: false
     t.string "edebo_person_code", null: false
@@ -85,6 +94,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_09_190829) do
 
   add_foreign_key "student_distributions", "groups"
   add_foreign_key "student_distributions", "students"
+  add_foreign_key "student_teachers", "student_distributions"
+  add_foreign_key "student_teachers", "teacher_distributions"
   add_foreign_key "teacher_distributions", "people"
   add_foreign_key "teacher_distributions", "units"
 end

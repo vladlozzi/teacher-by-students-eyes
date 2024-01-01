@@ -1,4 +1,5 @@
 class StudentDistribution < ApplicationRecord
+  has_many :student_teachers
   belongs_to :student
   belongs_to :group
 
@@ -13,6 +14,8 @@ class StudentDistribution < ApplicationRecord
                       message: "Введіть коректний email!"
 
   def self.truncate
+    ActiveRecord::Base.connection.execute("SET foreign_key_checks = 0")
     ActiveRecord::Base.connection.execute("TRUNCATE #{self.table_name}")
+    ActiveRecord::Base.connection.execute("SET foreign_key_checks = 1")
   end
 end

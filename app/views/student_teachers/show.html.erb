@@ -1,0 +1,12 @@
+<%= render @student_teacher %>
+
+<div>
+  <%= link_to "Редагувати цю пару", edit_student_teacher_path(@student_teacher) %> |
+  <%= link_to "Видалити цю пару", @student_teacher,
+              data: {
+                turbo_method: :delete,
+                turbo_confirm: "Справді видалити цю позицію?"
+              }
+  %> |
+  <%= link_to "Назад до переліку пар", student_teachers_path %>
+</div>

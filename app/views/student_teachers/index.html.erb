@@ -1,0 +1,26 @@
+<h1>Пари "студент-викладач"</h1>
+<p>
+  <%= link_to "Нова пара", new_student_teacher_path %> |
+  <%= link_to "Імпорт з текстового файлу", new_import_student_teachers_path %>
+</p>
+
+<div id="student_teachers">
+  <table>
+    <tr>
+      <th>№</th><th>ПІБ студента/студентки</th><th>Шифр академгрупи</th>
+      <th>ПІБ викладача/викладачки</th><th>Кафедра</th><th></th>
+    </tr>
+    <% index = 0 %>
+    <% @student_teachers.each do |student_teacher| %>
+      <% index += 1 %>
+      <tr>
+        <td class="align-right"><%= index %></td>
+        <td><%=student_teacher.student_distribution.student.full_name %></td>
+        <td><%=student_teacher.student_distribution.group.group %></td>
+        <td><%=student_teacher.teacher_distribution.person.full_name %></td>
+        <td><%=student_teacher.teacher_distribution.unit.name %></td>
+        <td><%= link_to "Подробиці", student_teacher %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
