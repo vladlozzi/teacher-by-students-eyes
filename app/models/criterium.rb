@@ -1,4 +1,6 @@
 class Criterium < ApplicationRecord
+  has_many :surveys
+
   validates :name, presence: {message: "Введіть назву критерію!"},
             uniqueness: {message: "Критерій із такою назвою вже є."}
   validates :scale, presence: {message: "Введіть шкалу оцінювання!"}

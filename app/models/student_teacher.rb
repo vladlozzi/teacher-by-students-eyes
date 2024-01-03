@@ -1,6 +1,7 @@
 class StudentTeacher < ApplicationRecord
   belongs_to :student_distribution
   belongs_to :teacher_distribution
+  has_many :surveys
 
   validates :student_distribution, presence: {message: "Виберіть студента/студентку!"}
   validates :teacher_distribution, presence: {message: "Виберіть викладача/викладачку!"}
