@@ -1,4 +1,5 @@
 class TeacherDistributionsController < ApplicationController
+  before_action :set_editor
   before_action :set_teacher_distribution, only: %i[ show edit update destroy ]
   before_action :set_options_for_select, only: %i[ new edit create update ]
 

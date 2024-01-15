@@ -26,6 +26,9 @@ Rails.application.routes.draw do
   post 'new_import_student_teachers' => 'student_teachers#import'
 
   get 'home/index'
-  get '/auth/:provider/callback', to: 'sessions#omniauth'
-  get 'sessions/omniauth'
+  get '/auth/google_oauth2'
+  get '/auth/:provider/callback', to: 'sessions#create'
+  get "/auth/exit", to: 'sessions#destroy'
+  get 'sessions/create'
+  get 'create_survey', to: 'student_teachers#create_survey'
 end

@@ -1,7 +1,16 @@
 <h1>Пари "студент-викладач"</h1>
 <p>
-  <%= link_to "Нова пара", new_student_teacher_path %> |
+  <%= link_to "Нова пара", new_student_teacher_path %> &nbsp; | &nbsp;
   <%= link_to "Імпорт з текстового файлу", new_import_student_teachers_path %>
+  <% if StudentTeacher.count > 0 %>
+    &nbsp;| &nbsp;
+    <%= link_to "Створити опитування", create_survey_path,
+                data: {
+                  turbo_method: :get,
+                  turbo_confirm: "Ця операція повністю видалить попереднє опитування. Продовжити?"
+                }
+    %>
+  <% end %>
 </p>
 
 <div id="student_teachers">

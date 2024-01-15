@@ -1,4 +1,5 @@
 class StudentTeachersController < ApplicationController
+  before_action :set_editor
   before_action :set_student_teacher, only: %i[ show edit update destroy ]
   before_action :set_options_for_select, only: %i[ new edit create update ]
 
@@ -125,7 +126,18 @@ class StudentTeachersController < ApplicationController
     end
   end
 
+  def create_survey
+    Survey.truncate
+    StudentTeacher.all.pluck(:id).each do |student_teacher_id|
+      Criterium.all.pluck(:id).each do |criterium_id|
+        Survey.create(student_teacher_id: student_teacher_id, criterium_id: criterium_id)
+      end
+    end
+    redirect_to student_teachers_path, notice: "Опитування успішно створено. Кількість позицій: #{Survey.count}."
+  end
+
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_student_teacher
       @student_teacher = StudentTeacher.find(params[:id])

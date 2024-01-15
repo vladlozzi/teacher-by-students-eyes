@@ -1,4 +1,5 @@
 class CriteriaController < ApplicationController
+  before_action :set_editor
   before_action :set_criterium, only: %i[ show edit update destroy ]
 
   # GET /criteria or /criteria.json

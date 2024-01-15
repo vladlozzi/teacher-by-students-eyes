@@ -1,0 +1,12 @@
+<h1>Онлайн-опитування ІФНТУНГ "Викладач очима студентів"</h1>
+
+<table>
+  <tbody>
+    <tr>
+      <td id="logged">Ви увійшли з email <strong><%= @input_email %></strong> як <strong><%= @current_user %></strong></td>
+      <td id="exit"><%= link_to "Вийти", "/auth/exit" %></td>
+    </tr>
+  </tbody>
+</table>
+
+<%= render session[:user] %>
