@@ -29,4 +29,13 @@ class SessionsController < ApplicationController
       end
     end
   end
+
+  def surveys_save
+    if session[:user] == "student"
+      params[:student_distribution][:survey].each do |id, rate|
+        Survey.find(id).update(rating: rate[:rating].to_i)
+      end
+      
+    end
+  end
 end

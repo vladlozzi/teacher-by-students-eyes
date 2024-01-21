@@ -60,7 +60,7 @@ h1, h2, h3, h4, h5, h6 { text-align: center; }
 #logged { }
 #exit { text-align: right; width: 20% }
 
-.admin-panel {
+.admin-panel, .teacher-for-student {
     text-align: center;
     font-family: sans-serif;
     font-weight: bold;
@@ -68,3 +68,10 @@ h1, h2, h3, h4, h5, h6 { text-align: center; }
 }
 
 #anon-processing { font-size: 120%; color: blue }
+
+.survey-criterium {
+    margin-left: 5%;
+    font-size: 125%;
+}
+
+input[type=submit] { font-size: 125%; color: darkblue }

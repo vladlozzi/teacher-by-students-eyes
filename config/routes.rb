@@ -31,4 +31,5 @@ Rails.application.routes.draw do
   get "/auth/exit", to: 'sessions#destroy'
   get 'sessions/create'
   get 'create_survey', to: 'student_teachers#create_survey'
+  patch '/surveys', to: 'sessions#surveys_save'
 end
