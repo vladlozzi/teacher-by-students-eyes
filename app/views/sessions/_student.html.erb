@@ -7,6 +7,7 @@
       <% "(#{teacher.teacher_distribution.id})" %>
       <%= "#{teacher.teacher_distribution.person.full_name}, #{teacher.teacher_distribution.unit.name.downcase}" %>
     </p>
+    <details><summary>Критерії оцінювання та оцінки</summary>
     <% teacher.surveys.order(:criterium_id).each do |survey_item| %>
       <p class="survey-criterium">
         <% "(#{survey_item.id})" %>
@@ -17,6 +18,7 @@
         <% end %>
       </p>
     <% end %>
+    </details>
   <% end %>
   <h3><%= student_form.submit "Підтвердити" %></h3>
 <% end %>
