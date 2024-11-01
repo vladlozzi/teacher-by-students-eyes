@@ -22,6 +22,9 @@ class SessionsController < ApplicationController
         if @teacher_distribution.present?
           session[:user] = "teacher"
           @current_user = "#{@person.full_name} (#{@teacher_distribution.unit.name})"
+        else
+          session[:user] = "person"
+          @current_user = "#{@person.full_name}"
         end
       else
         session[:user] = "outsider"

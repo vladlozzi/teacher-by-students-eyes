@@ -1,5 +1,7 @@
 class TeacherDistribution < ApplicationRecord
   has_many :student_teachers
+  has_many :surveys, through: :student_teachers
+
   belongs_to :person
   belongs_to :unit
 

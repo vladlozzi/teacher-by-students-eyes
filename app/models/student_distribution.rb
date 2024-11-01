@@ -1,5 +1,8 @@
 class StudentDistribution < ApplicationRecord
   has_many :student_teachers
+  has_many :surveys, through: :student_teachers
+  has_many :teacher_distributions, through: :student_teachers
+
   belongs_to :student
   belongs_to :group
 

@@ -1,0 +1,86 @@
+<h1>Результати опитування</h1>
+<% students_surveyed = StudentDistribution.
+      joins(:surveys).joins(:teacher_distributions).
+      where(teacher_distributions: {id: @teacher_distribution.id}).
+      where.not(surveys: {rating: nil}).
+      uniq.count
+%>
+<h3>
+  Кількість опитаних студентів: <%= students_surveyed %>
+</h3>
+
+<% if students_surveyed.positive? %>
+  <table class="teacher-points-by-criteria">
+    <thead>
+      <tr><th>Критерій</th><th>Кількість набраних балів</th>
+        <th>Середній бал на&nbsp;1&nbsp;студ.</th><th>Допустимий<br>діапазон</th><th>% від max можливого</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% teacher_distribution_points = 0
+         teacher_distribution_fractions = 0
+         teacher_distribution_criteria = 0
+      %>
+      <% Criterium.all.each do |criterium| %>
+      <tr>
+        <td><%= criterium.name %></td>
+        <td class="align-center">
+          <%
+            criterium_points = TeacherDistribution.joins(:surveys).
+              where(teacher_distributions: {id: @teacher_distribution.id}).
+              where(surveys: {criterium: criterium.id}).
+              where.not(surveys: {rating: nil}).
+              pluck(:rating).sum
+            criterium_count = TeacherDistribution.joins(:surveys).
+              where(teacher_distributions: {id: @teacher_distribution.id}).
+              where(surveys: {criterium: criterium.id}).
+              where.not(surveys: {rating: nil}).
+              where.not(surveys: {rating: 0}).
+              count
+            teacher_distribution_points += criterium_points
+          %>
+          <%= criterium_points %>
+        </td>
+        <td class="align-center">
+          <%= criterium_count.positive? ? points_avg = criterium_points.fdiv(criterium_count).round(2) : "всі утрималися" %>
+        </td>
+        <td class="align-center">
+          <% points_min, points_max = criterium.scale.scan(/-?\d+/).map(&:to_i).reject(&:zero?).minmax %>
+          <%= [points_min, points_max].map(&:to_s).join(" .. ") %>
+        </td>
+        <td class="align-center">
+          <%=
+            if criterium_count.positive?
+              fraction = ((points_avg - points_min).fdiv(points_max - points_min) * 100).round(1)
+              teacher_distribution_fractions += fraction
+              teacher_distribution_criteria += 1
+              fraction
+            else
+              "&mdash;".html_safe
+            end
+          %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+    <% teacher_distribution_count = TeacherDistribution.joins(:surveys).
+        where(teacher_distributions: {id: @teacher_distribution.id}).
+        where.not(surveys: {rating: nil}).
+        where.not(surveys: {rating: 0}).
+        count
+    %>
+    <tfoot>
+      <tr>
+        <th colspan=5>Результат опитування
+          <% if teacher_distribution_count.zero? %>
+            визначити неможливо,<br>оскільки всі опитані студенти утрималися від оцінки
+          <% else %>
+            становить <%= teacher_distribution_points.fdiv(teacher_distribution_count).round(2) %> бала, або
+            <%= teacher_distribution_fractions.fdiv(teacher_distribution_criteria).round(1) %>% від max можливого
+          <% end %>
+        </th>
+      </tr>
+    </tfoot>
+  </table>
+<% end %>
